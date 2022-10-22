@@ -1,0 +1,61 @@
+
+<div class="container">
+    <p>This is a more complete example with a service that simulates server calling:</p>
+ 
+
+<form>
+	<div class="mb-3 row">
+        <label class="label sucess center"> Search Your Favroite Book</label>
+		<label for="table-complete-search" class="col-xs-3 col-sm-auto col-form-label">Search Book:</label>
+		<div class="col-xs-3 col-sm-auto">
+			<input
+				id="table-complete-search"
+				type="text"
+                
+				class="form-control"
+				name="searchTerm"
+                (keyup.enter)="onSearchBook()"
+				[(ngModel)]="filterBookName"
+			/>
+		</div>
+		<!-- <span class="col col-form-label" *ngIf="service.loading$ | async">Loading...</span> -->
+	</div>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col" sortable="name">Title</th>
+				<th scope="col" sortable="area">Author</th>
+				<th scope="col" sortable="population">Lang</th>
+                <th scope="col" sortable="population">Pages</th>
+                <th scope="col" sortable="population">Format</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let book of books ">
+				<th scope="row">{{ 1 }}</th>
+				<td>
+                   {{book.title}}
+				</td>
+				<td>{{book.author}}</td>
+				<td>{{book.language}}</td>
+                <td>{{book.pages}}</td>
+				<td>{{book.pages}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="d-flex justify-content-between p-2">
+		<!-- <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+		</ngb-pagination> -->
+
+		<select class="form-select" style="width: auto" name="pageSize">
+			<option [ngValue]="2">2 items per page</option>
+			<option [ngValue]="4">4 items per page</option>
+			<option [ngValue]="6">6 items per page</option>
+		</select>
+	</div>
+</form>
+</div>
+
