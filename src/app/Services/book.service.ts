@@ -11,20 +11,36 @@ import { Book } from '../_models/book';
   providedIn: 'root'
 })
 export class BookService {
-  
   baseUrl=environment.apiUrl;
   bookCache= new Map();
+  presence: any;
   constructor(private http:HttpClient) { }
  
   getBooks(){
 debugger;
     return  this.http.get<Book[]>(this.baseUrl+'books');
     }
-    getBook(bookName:string){
-
-
-      return  this.http.get<Book[]>(this.baseUrl+'books/'+bookName.toLocaleLowerCase());
-      }
+    getBook(bookName:string){ 
+    return  this.http.get<Book[]>(this.baseUrl+'books/'+bookName.toLocaleLowerCase());
+  }
+  deleteBook(bookId:string){ 
+    return  this.http.delete<HttpClient>(this.baseUrl+'books/'+bookId);
+  }
+  addBook(book:any){ 
+    debugger;
+    return  this.http.post(this.baseUrl+"books",book).pipe(map((res:any)=>{
+      debugger;
+      return res;
+      }))
+   // return  this.http.get<Book[]>(this.baseUrl+'books/'+book);
+  }
+  setCurrentUser(user: Book) {
+    throw new Error('Method not implemented.');
+  }
+  updateBook(bookId:string,book:Book){ 
+    debugger;
+    return  this.http.put<Book[]>(this.baseUrl+'books/'+bookId,book);
+  }
    
      
 }
