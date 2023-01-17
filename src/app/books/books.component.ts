@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { AbstractControl, FormBuilder, FormControl, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { BookService } from '../Services/book.service';
+import { NotificationService } from '../Services/notification.service';
 import { Book } from '../_models/book';
 import { BookRequest } from '../_models/bookRequest';
 
@@ -13,6 +14,7 @@ import { BookRequest } from '../_models/bookRequest';
 })
 export class BooksComponent implements OnInit {
   @Output() cancelRegsiter=new EventEmitter();
+  @ViewChild('fltTbl') completeModal: ElementRef;
   @ViewChild('addBookModal') bookModal: ElementRef;
   books:any;
   bookRequest:BookRequest;
@@ -24,15 +26,17 @@ export class BooksComponent implements OnInit {
  @Input() isAdminUserLoggedIn=false;
   addOrUpdate:string='Add';
  bookId:string;
-  constructor(private _bookService:BookService, private fb:FormBuilder) { }
+  constructor(private _bookService:BookService, private fb:FormBuilder,private  notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.initializaForm();
     debugger;
     this.getBooks();
- 
+   // this.isAdminLoggedIn=this.notificationService.GetLoginNotification();
     if(localStorage.getItem('logedIn')=='True'){
+      
       this.isAdminLoggedIn=true;
+      this.completeModal.nativeElement.refresh();
     }
   }
  

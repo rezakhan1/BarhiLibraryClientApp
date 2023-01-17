@@ -1,0 +1,67 @@
+
+
+<div *ngIf="!loading" class="container-fluid hero-page1">
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <h1>Search Book</h1>
+          <input
+            [formControl]="queryField"
+            id="keyword"
+            type="search"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="loading" class="container-fluid mt-4">
+    <div class="container">
+      <div class="row justify-content-start align-items-start mb-5">
+        <div class="col-lg-12">
+          <!-- <form [formGroup]="addForm"> formControlName="keyword"  required-->
+          <input
+            class="form-control"
+            [formControl]="queryField"
+            type="search"
+            id="keyword"
+            placeholder="search for artists..."
+            typeahead-wait-ms="delay"
+            autocomplete="off"
+          />
+          <!-- </form> -->
+        </div>
+        <div *ngIf="items" class="col-12 mt-5">
+          <div class="row justify-content-around">
+            <div
+              *ngFor="let product of items"
+              class="col-lg-3 col-md-6 col-sm-12 book-display"
+            >
+            <div class="card">
+                <img class="card-img-top"  src="{{ product.volumeInfo.imageLinks.thumbnail }}"
+                 alt="Card image cap" *ngIf="product.volumeInfo.imageLinks">
+                <div class="card-body">
+                  <h5 class="card-title">Title: {{ product.volumeInfo.title }}</h5>
+                 
+                </div>
+                <ul *ngFor="let aut of product.volumeInfo.authors">
+                  <li class="list-group-item">Authors: {{ aut }}</li>
+                  
+                </ul>
+                <div class="card-body">
+                  <a class="card-link" [routerLink]="['/bookDetails', combineSlug(product.id)]">Details</a>
+                  <a class="card-link" (click)="goToLink(product.volumeInfo.previewLink)">preview</a>
+                </div>
+              </div>
+              
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>    
+  

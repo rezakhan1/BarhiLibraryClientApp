@@ -4,7 +4,8 @@
 
 export const environment = {
   production: true,
-  apiUrl:"https://barhilibrarayapi.azurewebsites.net/",
+  apiUrl:"https://barhilibrarayapi.azurewebsites.net/", 
+  
 };
 
 /*

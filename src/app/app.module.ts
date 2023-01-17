@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TextInputComponent } from './text-input/text-input.component';
 import { ErrorInterceptor } from './error-interceptor';
+import { EBookComponent } from './books/e-book/e-book.component';
+import { BookDetailsComponent } from './books/book-details/book-details.component';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { ErrorInterceptor } from './error-interceptor';
     FooterComponent,
     HomeComponent,
     TextInputComponent,
+    EBookComponent,
+    BookDetailsComponent,
     
   ],
   imports: [

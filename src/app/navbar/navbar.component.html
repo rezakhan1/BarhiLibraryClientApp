@@ -11,26 +11,32 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="collapse navbar-collapse nav-menue" id="navbarNavDropdown">
           <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item active pd-nav-bar">
               <a class="nav-link scrollto" routerLink='/'>Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link scrollto" routerLink='/'>About Us</a>
+            <li class="nav-item pd-nav-bar">
+              <a class="nav-link scrollto" href='#about'>About Us</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link scrollto" routerLink='/book'  id="btnShowBook">Books</a>
-            </li>
-            <li class="nav-item">
+             <li class="nav-item dropdown pd-nav-bar">
+              <a class="nav-link dropdown-toggle" id="bth" role="button" data-toggle="dropdown" 
+              aria-haspopup="true" aria-expanded="false">Books</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" routerLink='/book'> Book</a>
+                <a class="dropdown-item" routerLink="/pdfbook">E-Book</a> 
+              </div>
+            </li> 
+            <li class="nav-item pd-nav-bar">
               <a class="nav-link scrollto" href="#contact">Contact Us</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown pd-nav-bar">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+               role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Donate
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#"> Book</a>
+                <a class="dropdown-item" routerLink='/book'> Book</a>
                 <a class="dropdown-item" href="#">Funds</a>
                 <a class="dropdown-item" href="#">Asset </a>
               </div>
@@ -40,7 +46,7 @@
       </nav>
  
       
-      <div class="d-flex adminLoginBtn" style="margin-left: 20px; padding: 5px;" *ngIf="!isAdminLoggedIn" >
+      <div class="d-flex adminLoginBtn" style="margin-left: 15px; padding: 5px;" *ngIf="!isAdminLoggedIn" >
         <button class="btn btn-round btn-success btn-sm"  data-toggle="modal" 
         data-target="#modalLoginForm">Admin Login</button>
       </div>
@@ -48,10 +54,10 @@
         <button class="btn btn-round btn-danger btn-sm" (click)="logout()">Logout</button>
       </div>
       <div class="social-links">
-        <a href="#" class="socialMedia"><i class="bx bxl-twitter"></i></a>
-        <a href="#" class="socialMedia"><i class="bx bxl-facebook"></i></a>
-        <a href="#" class="socialMedia"><i class="bx bxl-instagram"></i></a>
-        <a href="#" class="socialMedia"><i class="bx bxl-linkedin"></i></a>
+        <a href="https://twitter.com/i/trends" class="socialMedia"><i class="bx bxl-twitter"></i></a>
+        <a href="https://www.facebook.com/" class="socialMedia"><i class="bx bxl-facebook"></i></a>
+        <a href="https://www.instagram.com/accounts/login/" class="socialMedia"><i class="bx bxl-instagram"></i></a>
+        <a href="https://www.linkedin.com/feed/" class="socialMedia"><i class="bx bxl-linkedin"></i></a>
         <a href="#" class="socialMedia"><i class="bx-phone-call"></i></a>
         
       </div>

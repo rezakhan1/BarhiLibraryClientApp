@@ -14,8 +14,19 @@ export class BookService {
   baseUrl=environment.apiUrl;
   bookCache= new Map();
   presence: any;
+  key= "";//"";
   constructor(private http:HttpClient) { }
  
+   getEBook(queryField: string) {
+    return this.http.get(
+      `https://www.googleapis.com/books/v1/volumes?q=${queryField}&maxResults=39&keyes&key=${this.key}`
+    );
+  }
+  getUserData(blogID:any) {
+    return this.http.get(
+      `https://www.googleapis.com/books/v1/volumes/${blogID}`
+    );
+  }
   getBooks(){
 debugger;
     return  this.http.get<Book[]>(this.baseUrl+'books');
