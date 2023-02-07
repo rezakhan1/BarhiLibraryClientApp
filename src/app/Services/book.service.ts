@@ -14,7 +14,7 @@ export class BookService {
   baseUrl=environment.apiUrl;
   bookCache= new Map();
   presence: any;
-  key= "";//"";
+  key="";
   constructor(private http:HttpClient) { }
  
    getEBook(queryField: string) {

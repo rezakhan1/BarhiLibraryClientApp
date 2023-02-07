@@ -13,6 +13,8 @@ export class EBookComponent implements OnInit {
 
   items: any;
   loading=false;
+   selectedBook = null;
+  selectedBookUrl = '';
   queryField: FormControl = new FormControl();
   constructor(
     private formBuilder: FormBuilder,
@@ -40,7 +42,6 @@ export class EBookComponent implements OnInit {
     return `${id}`;
   }
   goToLink(url: string) {
-    window.open(url, "_blank");
-  }
-
+    window.open(url, "_self");
+  } 
 }

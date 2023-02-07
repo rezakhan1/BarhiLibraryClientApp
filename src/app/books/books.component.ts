@@ -16,6 +16,7 @@ export class BooksComponent implements OnInit {
   @Output() cancelRegsiter=new EventEmitter();
   @ViewChild('fltTbl') completeModal: ElementRef;
   @ViewChild('addBookModal') bookModal: ElementRef;
+  @ViewChild('loginModal') loginMdl: ElementRef;
   books:any;
   bookRequest:BookRequest;
   filterBookName:any;
@@ -26,6 +27,16 @@ export class BooksComponent implements OnInit {
  @Input() isAdminUserLoggedIn=false;
   addOrUpdate:string='Add';
  bookId:string;
+ isShown:boolean = false;
+ loginForm!: FormGroup;
+ loading = false;
+ submitted = false;
+ returnUrl!: string;
+ userId:string="";
+ password:string="";
+ requiredId=false;
+ requiredPassword=false;
+
   constructor(private _bookService:BookService, private fb:FormBuilder,private  notificationService: NotificationService) { }
 
   ngOnInit(): void {
@@ -149,7 +160,6 @@ export class BooksComponent implements OnInit {
             'success'  
           ) 
           this.ngOnInit();
-         
         })
          
       } else if (result.dismiss === Swal.DismissReason.cancel) {  
@@ -161,9 +171,48 @@ export class BooksComponent implements OnInit {
       }  
     })
    }
-   cancel(){
-     
+   cancel(){ 
     this.cancelRegsiter.emit(false);
   }
-
+  logout(){
+    localStorage.setItem("logedIn", "False"); 
+        this.isAdminLoggedIn=false;
+        Swal.fire(  
+          'LogedOut!',  
+          'Loged Out Successfully',  
+          'success'  
+        ) 
+        this.notificationService.SetLoginNotification(false);   
+  }
+  onSubmit(event: any) {
+    debugger;
+    if(this.userId==""){
+      this.requiredId=!this.requiredId;
+    }
+    if(this.password==""){
+      this.requiredPassword=!this.requiredPassword;
+    }
+     if(this.userId=="admin" &&  this.password=="admin123" ){ 
+      Swal.fire(  
+        'LogedIn!',  
+        'Loged In Successfully',  
+        'success'  
+      ) 
+      debugger;
+      localStorage.setItem("logedIn", "True"); 
+        this.isAdminLoggedIn=true; 
+        this.notificationService.SetLoginNotification(true);
+        this.loginMdl.nativeElement.click();
+       this.loginMdl.nativeElement.refresh();
+     }
+  
+      if(this.userId!="admin" ||  this.password!="admin123" ){ 
+      Swal.fire(   
+        'Please try again', 
+        'Please Enter Correct UserId and Password',  
+        'error'  
+      ) 
+      localStorage.setItem("logedIn", "False");
+     }
+  }
 }
